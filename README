@@ -1,0 +1,8 @@
+This is a sample project, integrating JAX-RS implementation (RESTeasy) with EJB. 
+
+The project has been tested with JBoss 4.2.3, two separate ears with services dependent on each other. 
+
+Some important gotch'as:
+ * when deploying RESTeasy within and EAR all libs must be within ear lib/ folder (not WEB-INF/lib inside war file). See the webapp and ear pom.xml configuration for details
+ * when there are no libraries are deploying with the war file, the lib/ folder is not created. That's a reason for a dummy lib/empty file - to force existence of lib/ folder (for some unknown reasons the Skinny WAR didn't work - http://maven.apache.org/plugins/maven-war-plugin/examples/skinny-wars.html)
+ * when the RESTful service is an EJB as well (which is convenient for wiring different services), it needs to be listed in resteasy.jndi.resources context-param in web.xml. The said service needs JBoss specific annotation @LocalBinding to define global JNDI  

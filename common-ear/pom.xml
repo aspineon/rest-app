@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>rest-app</artifactId>
+		<groupId>pl.marchwicki.rest-app</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>pl.marchwicki.rest-app</groupId>
+	<artifactId>common-ear</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>ear</packaging>
+
+	<name>common-ear</name>
+	<url>http://maven.apache.org</url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<generateApplicationXml>true</generateApplicationXml>
+					<modules>
+						<ejbModule>
+							<groupId>pl.marchwicki.rest-app</groupId>
+							<artifactId>common-ejb</artifactId>
+						</ejbModule>
+						<jarModule>
+							<groupId>joda-time</groupId>
+							<artifactId>joda-time</artifactId>
+						</jarModule>
+					</modules>
+					<jboss>
+						<version>4.2</version>
+						<module-order>strict</module-order>
+					</jboss>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>pl.marchwicki.rest-app</groupId>
+			<artifactId>common-ejb</artifactId>
+			<type>ejb</type>
+		</dependency>
+	</dependencies>
+
+
+</project>
