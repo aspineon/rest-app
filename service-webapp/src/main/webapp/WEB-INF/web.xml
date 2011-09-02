@@ -4,20 +4,38 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<display-name>service-webapp</display-name>
 
-   <context-param>
-      <param-name>resteasy.jndi.resources</param-name>
-      <param-value>UsersService/local</param-value>
-   </context-param>
+	<context-param>
+		<param-name>resteasy.jndi.resources</param-name>
+		<param-value>UsersService/local</param-value>
+	</context-param>
 
 	<servlet>
 		<servlet-name>resteasy</servlet-name>
 		<servlet-class>
-			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
-		</servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>resteasy</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>resteasy</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>friend</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+
+	<security-role>
+		<role-name>friend</role-name>
+	</security-role>
+
 </web-app>
